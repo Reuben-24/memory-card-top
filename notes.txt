@@ -1,0 +1,22 @@
+      <MainGameDisplay />
+      <LoadingDisplay />
+
+
+Click link
+page loads
+loading screen while images are fetched
+loads card display
+
+Functionality:
+function to randomise card order
+load images from api
+
+Data:
+Card data
+
+-win display?
+-game over display?
+
+initial loading screen?
+
+nba players?
