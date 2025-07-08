@@ -1,7 +1,3 @@
-      <MainGameDisplay />
-      <LoadingDisplay />
-
-
 Click link
 page loads
 loading screen while images are fetched

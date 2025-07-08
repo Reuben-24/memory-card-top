@@ -1,8 +1,8 @@
-export default function WinInstruction({currentScore}) {
+export default function WinInstruction({currentScore, handleLoadNewGame}) {
   return (
     <div className="instruction">
       <p>Great Work! You have achieved the games maximum score of {currentScore}.</p>
-      <p>Click a player to start a new game.</p>
+      <button className="play-again-button" onClick={handleLoadNewGame}>Play Again</button>
     </div>
   );
 }

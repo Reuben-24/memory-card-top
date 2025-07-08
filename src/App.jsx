@@ -7,13 +7,14 @@ import Footer from "./components/Footer.jsx";
 import Instructions from "./components/Instructions.jsx";
 import MainGameDisplay from "./components/MainGameDisplay.jsx";
 
-import { GAME_STATES } from "./constants.js";
+import { GAME_STATES, NUM_CARDS } from "./constants.js";
 import { validatePlayersData, getRandomPlayersWithUrls } from "./utils.js";
 
 function App() {
   const [gameState, setGameState] = useState(GAME_STATES.LOADING);
   const [players, setPlayers] = useState([]);
   const [currentPlayers, setCurrentPlayers] = useState([]);
+  const [clickedPlayerIds, setClickedPlayerIds] = useState([]);
   const [currentScore, setCurrentScore] = useState(0);
   const [bestScore, setBestScore] = useState(0);
 
@@ -64,29 +65,60 @@ function App() {
 
   function handleLoadNewGame() {
     setGameState(GAME_STATES.LOADING);
+    setCurrentScore(0);
+    setClickedPlayerIds([]);
     setCurrentPlayers(getRandomPlayersWithUrls(players));
   }
 
   function handleStartGame() {
-    setCurrentScore(0);
     setGameState(GAME_STATES.IN_PROGRESS);
   }
 
-  function handleWin() {
+  function handleWin(finalScore) {
     setGameState(GAME_STATES.GAME_OVER_WIN);
-    if (currentScore > bestScore) setBestScore(currentScore);
+    if (finalScore > bestScore) setBestScore(finalScore);
   }
 
-  function handleLoss() {
+  function handleLoss(finalScore) {
     setGameState(GAME_STATES.GAME_OVER_LOSS);
-    if (currentScore > bestScore) setBestScore(currentScore);
+    if (finalScore > bestScore) setBestScore(finalScore);
+  }
+
+  function handlePlayerClick(playerId) {
+    // Check Loss
+    if (clickedPlayerIds.includes(playerId)) {
+      handleLoss(currentScore);
+      return;
+    }
+
+    const newClickedPlayerIds = [...clickedPlayerIds, playerId];
+    const newScore = currentScore + 1;
+
+    setClickedPlayerIds(newClickedPlayerIds);
+    setCurrentScore(newScore);
+
+    if (newClickedPlayerIds.length === NUM_CARDS) {
+      handleWin(newScore);
+    }
+
+    // TODO: shuffle board here
   }
 
   return (
     <>
       <Header currentScore={currentScore} bestScore={bestScore} />
-      <Instructions gameState={gameState} currentScore={currentScore} />
-      {gameState !== GAME_STATES.LOADING && <MainGameDisplay currentPlayers={currentPlayers}/>}
+      <Instructions
+        gameState={gameState}
+        currentScore={currentScore}
+        handleLoadNewGame={handleLoadNewGame}
+        handleStartGame={handleStartGame}
+      />
+      {gameState === GAME_STATES.IN_PROGRESS && (
+        <MainGameDisplay
+          currentPlayers={currentPlayers}
+          handlePlayerClick={handlePlayerClick}
+        />
+      )}
       <Footer />
     </>
   );
