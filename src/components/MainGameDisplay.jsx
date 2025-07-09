@@ -1,9 +1,9 @@
 import GameCard from "./GameCard.jsx";
 
-export default function MainGameDisplay({ currentPlayers, handlePlayerClick }) {
+export default function MainGameDisplay({ shuffledPlayers, handlePlayerClick }) {
   return (
     <div className="cards-display">
-      {currentPlayers.map((player) => (
+      {shuffledPlayers.map((player) => (
         <GameCard key={player.playerId} player={player} handlePlayerClick={handlePlayerClick} />
       ))}
     </div>

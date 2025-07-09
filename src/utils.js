@@ -50,4 +50,12 @@ function getPlayerImageUrl(playerId) {
   return `https://cdn.nba.com/headshots/nba/latest/1040x760/${playerId}.png`;
 }
 
-export { getRandomPlayersWithUrls, validatePlayersData };
+function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]]; // Swap elements
+  }
+  return array;
+}
+
+export { getRandomPlayersWithUrls, validatePlayersData, shuffleArray };
