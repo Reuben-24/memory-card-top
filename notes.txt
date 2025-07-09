@@ -1,6 +1,3 @@
-- create functionality to randomise card order
-- Fix button styling
-- Double check all functionality
 - Run by chat
 - check project requirements
 - push, deploy, submit

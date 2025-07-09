@@ -1,6 +1,7 @@
 export { GAME_STATES, NUM_CARDS };
 
 const GAME_STATES = {
+  ERROR: "error",
   LOADING: "loading",
   READY: "ready",
   IN_PROGRESS: "in-progress",

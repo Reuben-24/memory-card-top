@@ -75,7 +75,7 @@ function App() {
       })
       .catch((err) => {
         console.error("Failed to fetch players", err);
-        // TODO: handle failed load of player data
+        setGameState(GAME_STATES.ERROR);
       });
   }, []);
 
@@ -92,6 +92,8 @@ function App() {
     if (currentPlayers.length === 0) return;
 
     let loadedCount = 0;
+    let failed = false;
+
     currentPlayers.forEach((player) => {
       // Load image from source into js variable
       const img = new Image();
@@ -100,7 +102,7 @@ function App() {
       const handleImageLoad = () => {
         loadedCount++;
         if (loadedCount === currentPlayers.length) {
-          setGameState(GAME_STATES.READY);
+          setGameState(failed ? GAME_STATES.ERROR : GAME_STATES.READY);
         }
       };
 
@@ -108,7 +110,7 @@ function App() {
 
       img.onerror = () => {
         console.warn(`Image failed to load for playerId: ${player.playerId}`);
-        // TODO: Optionally replace this player or show fallback image
+        failed = true;
         handleImageLoad();
       };
     });

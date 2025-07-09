@@ -235,7 +235,7 @@
   fill: currentColor;
 }
 
-.start-game-button, .load-new-game-button {
+.button {
   display: inline-block;
   padding: 0.9rem 2rem;
   font-size: 1.1rem;
@@ -250,16 +250,14 @@
   background: linear-gradient(145deg, #f5f5f5, #ffffff);
 }
 
-.load-new-game-button:hover,
-.start-game-button:hover {
+.button:hover {
   background: linear-gradient(145deg, #ffffff, #f5f5f5);
   box-shadow: 0 10px 24px rgba(124, 58, 237, 0.15);
   border-color: #cfc2ff;
   color: #7c3aed;
 }
 
-.load-new-game-button:active,
-.start-game-button:active {
+.button:active {
   transform: scale(0.97);
   box-shadow: 0 4px 12px rgba(124, 58, 237, 0.25);
   border-color: #a78bfa;
