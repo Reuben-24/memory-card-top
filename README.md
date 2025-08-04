@@ -44,11 +44,3 @@ Test your memory skills by identifying which NBA players you’ve already clicke
 4. Don’t click the same player twice — or it’s game over!
 5. Try to beat your high score.
 
----
-
-## 📁 Setup & Local Development
-
-```bash
-git clone https://github.com/Reuben-24/memory-game.git
-cd memory-game
-open index.html
